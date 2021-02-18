@@ -1,0 +1,16 @@
+snowflake:
+  target: dev
+  outputs:
+    dev:
+        type: snowflake
+        account: 'intinfotech.ap-southeast-2'
+        user: 'kannann'
+        
+        password: 'Newuser123'
+        database: DATAVAULTDEMO
+        schema: TARGET
+ 
+        role: SYSADMIN
+        warehouse: DEMO_WH
+        threads: 1
+        client_session_keep_alive: False

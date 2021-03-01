@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: tpch_sample
     database: DATAVAULTDEMO
-    schema: TARGET
+    schema: SRC_SIMILAR
     tables:
       - name: SUPPLIERS
       - name: PRODUCTS

@@ -8,7 +8,7 @@ snowflake:
         
         password: 'Newuser123'
         database: DATAVAULTDEMO
-        schema: TARGET
+        schema: SRC_SIMILAR
  
         role: SYSADMIN
         warehouse: DEMO_WH

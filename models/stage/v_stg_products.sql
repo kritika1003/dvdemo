@@ -3,6 +3,7 @@ source_model: 'raw_products'
 derived_columns:
    CATEGORY: 'CATEGORYID'
    RECORD_SOURCE: '!TPCH-PRODUCTS'
+   LOAD_DATE    :  CURRENT_TIMESTAMP()
 hashed_columns:
    PRODUCT_PK: 'PRODUCTID'
    SUPPLIER_PK: 'SUPPLIERID'
@@ -32,8 +33,6 @@ hashed_columns:
 {% set hashed_columns = metadata_dict['hashed_columns'] %}
 {%- do log("hashed_columns: " ~ hashed_columns, true) %}
 
-WITH staging AS (
-
 
 
     {{ dbtvault.stage(include_source_columns=true,
@@ -55,17 +54,3 @@ WITH staging AS (
                       ranked_columns=none) }}
 
 
-
-)
-
-
-
-SELECT *,
-
-
-
-       TO_TIMESTAMP('{{ var('LOAD_DATE') }}') AS LOAD_DATE
-
-
-
-FROM staging

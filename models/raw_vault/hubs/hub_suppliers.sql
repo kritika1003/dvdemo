@@ -1,4 +1,4 @@
-{%- set source_model = "v_stg_suppliers" -%}
+ {%- set source_model = "v_stg_suppliers" -%}
 {%- set src_pk = "SUPPLIER_PK" -%}
 {%- set src_nk = "SUPPLIERID" -%}
 {%- set src_ldts = "LOAD_DATE" -%}

@@ -2,6 +2,7 @@
 source_model: 'raw_shippers'
 derived_columns:
    RECORD_SOURCE: '!TPCH-SHIPPERS'
+   LOAD_DATE    :  CURRENT_TIMESTAMP()
 hashed_columns:
    SHIPPER_PK: 'SHIPPERID'
    SHIPPER_HASHDIFF:
@@ -21,9 +22,6 @@ hashed_columns:
 {% set hashed_columns = metadata_dict['hashed_columns'] %}
 {%- do log("hashed_columns: " ~ hashed_columns, true) %}
 
-
-
-WITH staging AS (
 
 
 
@@ -47,16 +45,3 @@ WITH staging AS (
 
 
 
-)
-
-
-
-SELECT *,
-
-
-
-       TO_TIMESTAMP('{{ var('LOAD_DATE') }}') AS LOAD_DATE
-
-
-
-FROM staging

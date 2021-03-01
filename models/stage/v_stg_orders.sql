@@ -2,6 +2,7 @@
 source_model: 'raw_orders'
 derived_columns:
    RECORD_SOURCE: '!TPCH-ORDERS'
+   LOAD_DATE    :  CURRENT_TIMESTAMP()
 hashed_columns:
    ORDER_PK: 'ORDERID'
    PRODUCT_PK: 'PRODUCTID'
@@ -41,10 +42,6 @@ hashed_columns:
 
 
 
-WITH staging AS (
-
-
-
     {{ dbtvault.stage(include_source_columns=true,
 
 
@@ -64,17 +61,3 @@ WITH staging AS (
                       ranked_columns=none) }}
 
 
-
-)
-
-
-
-SELECT *,
-
-
-
-       TO_TIMESTAMP('{{ var('LOAD_DATE') }}') AS LOAD_DATE
-
-
-
-FROM staging

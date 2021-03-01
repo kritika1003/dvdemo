@@ -2,6 +2,7 @@
 source_model: 'raw_customers'
 derived_columns:
    RECORD_SOURCE: '!TPCH-CUSTOMERS'
+   LOAD_DATE    :  CURRENT_TIMESTAMP()
 hashed_columns:
    CUSTOMER_PK: 'CUSTOMERID'
    CUSTOMER_HASHDIFF:
@@ -28,7 +29,7 @@ hashed_columns:
 
 
 
-WITH staging AS (
+
 
 
 
@@ -52,16 +53,6 @@ WITH staging AS (
 
 
 
-)
 
 
 
-SELECT *,
-
-
-
-       TO_TIMESTAMP('{{ var('LOAD_DATE') }}') AS LOAD_DATE
-
-
-
-FROM staging

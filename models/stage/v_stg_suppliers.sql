@@ -2,6 +2,7 @@
 source_model: 'raw_suppliers'
 derived_columns:
    RECORD_SOURCE: '!TPCH-SUPPLIERS'
+   LOAD_DATE    :  CURRENT_TIMESTAMP()
 hashed_columns:
    SUPPLIER_PK: 'SUPPLIERID'
    SUPPLIER_HASHDIFF:
@@ -28,9 +29,6 @@ hashed_columns:
 
 
 
-WITH staging AS (
-
-
 
     {{ dbtvault.stage(include_source_columns=true,
 
@@ -51,17 +49,3 @@ WITH staging AS (
                       ranked_columns=none) }}
 
 
-
-)
-
-
-
-SELECT *,
-
-
-
-       TO_TIMESTAMP('{{ var('LOAD_DATE') }}') AS LOAD_DATE
-
-
-
-FROM staging
